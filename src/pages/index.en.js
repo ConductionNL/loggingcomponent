@@ -22,7 +22,7 @@ import authorizationImage from '../images/undraw_two_factor_authentication_namy.
 
 const IndexPage = ({location}) => (
   <Layout>
-    <SEO title="Proto component commonground"/>
+    <SEO title="Logging component"/>
     <Background backgroundColor="#4376FC">
       <Container>
         <Navigation as="nav" location={location}/>
