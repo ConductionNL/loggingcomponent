@@ -16,7 +16,7 @@ class VerwerktObjectRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Log::class);
+        parent::__construct($registry, VerwerktObject::class);
     }
 
     // /**

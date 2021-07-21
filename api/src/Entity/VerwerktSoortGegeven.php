@@ -72,7 +72,6 @@ class VerwerktSoortGegeven
      *
      * @example persoon
      *
-     * @Gedmo\Versioned
      * @Assert\NotNull()
      * @Assert\Length(
      *     max = 255
@@ -83,10 +82,8 @@ class VerwerktSoortGegeven
     private $soortGegeven;
 
     /**
-     * @var VerwerktObject Verwerkt obect van dit verwerkt soort gegeven
-     *
      * @Groups({"write"})
-     * @ORM\ManyToOne(targetEntity="App\Entity\VerwerktObject", inversedBy="verwerkteSoortGegevens", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=VerwerktObject::class, inversedBy="verwerkteSoortGegevens")
      * @MaxDepth(1)
      */
     private $verwerktObject;
@@ -133,18 +130,6 @@ class VerwerktSoortGegeven
         return $this;
     }
 
-    public function getVerwerktObject(): ?VerwerktObject
-    {
-        return $this->verwerktObject;
-    }
-
-    public function setVerwerktObject(?VerwerktObject $verwerktObject): self
-    {
-        $this->verwerktObject = $verwerktObject;
-
-        return $this;
-    }
-
     public function getDateCreated(): ?\DateTimeInterface
     {
         return $this->dateCreated;
@@ -165,6 +150,18 @@ class VerwerktSoortGegeven
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
         $this->dateModified = $dateModified;
+
+        return $this;
+    }
+
+    public function getVerwerktObject(): ?VerwerktObject
+    {
+        return $this->verwerktObject;
+    }
+
+    public function setVerwerktObject(?VerwerktObject $verwerktObject): self
+    {
+        $this->verwerktObject = $verwerktObject;
 
         return $this;
     }

@@ -5,12 +5,12 @@ info:
   description: |
     API Details
     - Component: 
-    - Reference: proto-component-commonground
+    - Reference: loggingcomponent
     - Enviroment: dev
     - Version: V1.0
-    - Repository: [online](https://github.com/ConductionNL/proto-component-commonground) / [zip](https://github.com/ConductionNL/proto-component-commonground/archive/master.zip)
+    - Repository: [online](https://github.com/ConductionNL/loggingcomponent) / [zip](https://github.com/ConductionNL/loggingcomponent/archive/master.zip)
     - Docker Image: [online]() 
-    - Datamodel: [postman](schema/proto-component-commonground.postman_collection.json) / [oas](schema/openapi.yaml) / [pdf](schema/datamodel.pdf) / [modelio (zip)](schema/Datamodel_Modelio.zip) 
+    - Datamodel: [postman](schema/loggingcomponent.postman_collection.json) / [oas](schema/openapi.yaml) / [pdf](schema/datamodel.pdf) / [modelio (zip)](schema/Datamodel_Modelio.zip) 
 
     Het Proto Component vormt zowel de gemeenschappelijke basis onder alle componenten, als een “template” voor het maken van nieuwe componenten.         
 paths:
@@ -1941,6 +1941,2631 @@ paths:
             schema:
               $ref: '#/components/schemas/ChangeLog-write'
         description: 'The updated ChangeLog resource'
+  /verwerkings_acties:
+    get:
+      tags:
+        - VerwerkingsActie
+      operationId: getVerwerkingsActieCollection
+      summary: 'Retrieves the collection of VerwerkingsActie resources.'
+      responses:
+        200:
+          description: 'VerwerkingsActie collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/VerwerkingsActie:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/VerwerkingsActie:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerkingsActie-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerkingsActie-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerkingsActie-read'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - VerwerkingsActie
+      operationId: postVerwerkingsActieCollection
+      summary: 'Creates a VerwerkingsActie resource.'
+      responses:
+        201:
+          description: 'VerwerkingsActie resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+          links:
+            GetVerwerkingsActieItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getVerwerkingsActieItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /verwerkings_acties/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+        description: 'The new VerwerkingsActie resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/verwerkings_acties/{id}':
+    get:
+      tags:
+        - VerwerkingsActie
+      operationId: getVerwerkingsActieItem
+      summary: 'Retrieves a VerwerkingsActie resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'VerwerkingsActie resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    put:
+      tags:
+        - VerwerkingsActie
+      operationId: putVerwerkingsActieItem
+      summary: 'Replaces the VerwerkingsActie resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'VerwerkingsActie resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+        description: 'The updated VerwerkingsActie resource'
+    delete:
+      tags:
+        - VerwerkingsActie
+      operationId: deleteVerwerkingsActieItem
+      summary: 'Removes the VerwerkingsActie resource.'
+      responses:
+        204:
+          description: 'VerwerkingsActie resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/verwerkings_acties/{id}/audit_trail':
+    get:
+      tags:
+        - VerwerkingsActie
+      operationId: get_audit_trailVerwerkingsActieItem
+      summary: 'Retrieves a VerwerkingsActie resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'VerwerkingsActie resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+  '/verwerkings_acties/{id}/change_log':
+    get:
+      tags:
+        - VerwerkingsActie
+      operationId: get_change_logsVerwerkingsActieItem
+      summary: 'Retrieves a VerwerkingsActie resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'VerwerkingsActie resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/VerwerkingsActie-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+  /verwerkt_objects:
+    get:
+      tags:
+        - VerwerktObject
+      operationId: getVerwerktObjectCollection
+      summary: 'Retrieves the collection of VerwerktObject resources.'
+      responses:
+        200:
+          description: 'VerwerktObject collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/VerwerktObject:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/VerwerktObject:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerktObject-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerktObject-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerktObject-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerktObject-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerktObject-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerktObject-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerktObject-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerktObject-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerktObject-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerktObject-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerktObject-read'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - VerwerktObject
+      operationId: postVerwerktObjectCollection
+      summary: 'Creates a VerwerktObject resource.'
+      responses:
+        201:
+          description: 'VerwerktObject resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+          links:
+            GetVerwerktObjectItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getVerwerktObjectItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /verwerkt_objects/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject-write'
+        description: 'The new VerwerktObject resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/verwerkt_objects/{id}':
+    get:
+      tags:
+        - VerwerktObject
+      operationId: getVerwerktObjectItem
+      summary: 'Retrieves a VerwerktObject resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'VerwerktObject resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    put:
+      tags:
+        - VerwerktObject
+      operationId: putVerwerktObjectItem
+      summary: 'Replaces the VerwerktObject resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'VerwerktObject resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/VerwerktObject-write'
+        description: 'The updated VerwerktObject resource'
+    delete:
+      tags:
+        - VerwerktObject
+      operationId: deleteVerwerktObjectItem
+      summary: 'Removes the VerwerktObject resource.'
+      responses:
+        204:
+          description: 'VerwerktObject resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/verwerkt_objects/{id}/audit_trail':
+    get:
+      tags:
+        - VerwerktObject
+      operationId: get_audit_trailVerwerktObjectItem
+      summary: 'Retrieves a VerwerktObject resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'VerwerktObject resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+  '/verwerkt_objects/{id}/change_log':
+    get:
+      tags:
+        - VerwerktObject
+      operationId: get_change_logsVerwerktObjectItem
+      summary: 'Retrieves a VerwerktObject resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'VerwerktObject resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/VerwerktObject-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+  /verwerkt_soort_gegevens:
+    get:
+      tags:
+        - VerwerktSoortGegeven
+      operationId: getVerwerktSoortGegevenCollection
+      summary: 'Retrieves the collection of VerwerktSoortGegeven resources.'
+      responses:
+        200:
+          description: 'VerwerktSoortGegeven collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/VerwerktSoortGegeven:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/VerwerktSoortGegeven:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string, nullable: true }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - VerwerktSoortGegeven
+      operationId: postVerwerktSoortGegevenCollection
+      summary: 'Creates a VerwerktSoortGegeven resource.'
+      responses:
+        201:
+          description: 'VerwerktSoortGegeven resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+          links:
+            GetVerwerktSoortGegevenItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getVerwerktSoortGegevenItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /verwerkt_soort_gegevens/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+        description: 'The new VerwerktSoortGegeven resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/verwerkt_soort_gegevens/{id}':
+    get:
+      tags:
+        - VerwerktSoortGegeven
+      operationId: getVerwerktSoortGegevenItem
+      summary: 'Retrieves a VerwerktSoortGegeven resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'VerwerktSoortGegeven resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    put:
+      tags:
+        - VerwerktSoortGegeven
+      operationId: putVerwerktSoortGegevenItem
+      summary: 'Replaces the VerwerktSoortGegeven resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'VerwerktSoortGegeven resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+        description: 'The updated VerwerktSoortGegeven resource'
+    delete:
+      tags:
+        - VerwerktSoortGegeven
+      operationId: deleteVerwerktSoortGegevenItem
+      summary: 'Removes the VerwerktSoortGegeven resource.'
+      responses:
+        204:
+          description: 'VerwerktSoortGegeven resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/verwerkt_soort_gegevens/{id}/audit_trail':
+    get:
+      tags:
+        - VerwerktSoortGegeven
+      operationId: get_audit_trailVerwerktSoortGegevenItem
+      summary: 'Retrieves a VerwerktSoortGegeven resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'VerwerktSoortGegeven resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+  '/verwerkt_soort_gegevens/{id}/change_log':
+    get:
+      tags:
+        - VerwerktSoortGegeven
+      operationId: get_change_logsVerwerktSoortGegevenItem
+      summary: 'Retrieves a VerwerktSoortGegeven resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'VerwerktSoortGegeven resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
 components:
   schemas:
     AuditTrail-read:
@@ -2333,60 +4958,966 @@ components:
         '@type':
           readOnly: true
           type: string
+    VerwerkingsActie-read:
+      type: object
+      description: 'Verwerkings actie.'
+      properties:
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        actieNaam:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        handelingsNaam:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingsnaam:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingId:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingsactiviteitId:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingsactiviteitUrl:
+          description: 'The name of this processing action.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        vertrouwelijkheid:
+          description: 'The name of this processing action.'
+          type: string
+        bewaartermijn:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        uitvoerder:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        systeem:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        gebruiker:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        gegevensbron:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        soortAfnemerId:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        afnemerId:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingsactiviteitIdAfnemer:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingsactiviteitUrlAfnemer:
+          description: 'The name of this processing action.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        verwerkingIdAfnemer:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkteObjecten:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerwerktObject-read'
+        tijdstip:
+          description: 'The name of this processing action.'
+          type: string
+          format: date-time
+        tijdstipRegistratie:
+          description: 'The name of this processing action.'
+          type: string
+          format: date-time
+        dateCreated:
+          description: 'The moment this request was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this request last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - vertrouwelijkheid
+        - tijdstip
+    VerwerkingsActie-write:
+      type: object
+      description: 'Verwerkings actie.'
+      properties:
+        actieNaam:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        handelingsNaam:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingsnaam:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingId:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingsactiviteitId:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingsactiviteitUrl:
+          description: 'The name of this processing action.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        vertrouwelijkheid:
+          description: 'The name of this processing action.'
+          type: string
+        bewaartermijn:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        uitvoerder:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        systeem:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        gebruiker:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        gegevensbron:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        soortAfnemerId:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        afnemerId:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingsactiviteitIdAfnemer:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingsactiviteitUrlAfnemer:
+          description: 'The name of this processing action.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        verwerkingIdAfnemer:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkteObjecten:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerwerktObject-write'
+        tijdstip:
+          description: 'The name of this processing action.'
+          type: string
+          format: date-time
+      required:
+        - vertrouwelijkheid
+        - tijdstip
+    'VerwerkingsActie:jsonld-read':
+      type: object
+      description: 'Verwerkings actie.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        actieNaam:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        handelingsNaam:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingsnaam:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingId:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingsactiviteitId:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingsactiviteitUrl:
+          description: 'The name of this processing action.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        vertrouwelijkheid:
+          description: 'The name of this processing action.'
+          type: string
+        bewaartermijn:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        uitvoerder:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        systeem:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        gebruiker:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        gegevensbron:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        soortAfnemerId:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        afnemerId:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingsactiviteitIdAfnemer:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingsactiviteitUrlAfnemer:
+          description: 'The name of this processing action.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        verwerkingIdAfnemer:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkteObjecten:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerwerktObject:jsonld-read'
+        tijdstip:
+          description: 'The name of this processing action.'
+          type: string
+          format: date-time
+        tijdstipRegistratie:
+          description: 'The name of this processing action.'
+          type: string
+          format: date-time
+        dateCreated:
+          description: 'The moment this request was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this request last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - vertrouwelijkheid
+        - tijdstip
+    'VerwerkingsActie:jsonld-write':
+      type: object
+      description: 'Verwerkings actie.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        actieNaam:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        handelingsNaam:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingsnaam:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingId:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingsactiviteitId:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingsactiviteitUrl:
+          description: 'The name of this processing action.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        vertrouwelijkheid:
+          description: 'The name of this processing action.'
+          type: string
+        bewaartermijn:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        uitvoerder:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        systeem:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        gebruiker:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        gegevensbron:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        soortAfnemerId:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        afnemerId:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingsactiviteitIdAfnemer:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkingsactiviteitUrlAfnemer:
+          description: 'The name of this processing action.'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
+        verwerkingIdAfnemer:
+          description: 'The name of this processing action.'
+          type: string
+          nullable: true
+        verwerkteObjecten:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerwerktObject:jsonld-write'
+        tijdstip:
+          description: 'The name of this processing action.'
+          type: string
+          format: date-time
+      required:
+        - vertrouwelijkheid
+        - tijdstip
+    VerwerktObject-read:
+      type: object
+      description: 'Verwerkt object.'
+      properties:
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        objecttype:
+          description: 'Het type van dit verwerkte object'
+          type: string
+          nullable: true
+        soortObjectId:
+          description: 'Het soort id van dit verwerkte object'
+          type: string
+          nullable: true
+        objectId:
+          description: 'Het object id naast het lokale id'
+          type: string
+          nullable: true
+        betrokkenheid:
+          description: 'De betrokkenheid van dit verwerkte object'
+          type: string
+          nullable: true
+        verwerkteSoortGegevens:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerwerktSoortGegeven-read'
+        dateCreated:
+          description: 'The moment this request was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this request last Modified'
+          type: string
+          format: date-time
+          nullable: true
+    VerwerktObject-write:
+      type: object
+      description: 'Verwerkt object.'
+      properties:
+        objecttype:
+          description: 'Het type van dit verwerkte object'
+          type: string
+          nullable: true
+        soortObjectId:
+          description: 'Het soort id van dit verwerkte object'
+          type: string
+          nullable: true
+        objectId:
+          description: 'Het object id naast het lokale id'
+          type: string
+          nullable: true
+        betrokkenheid:
+          description: 'De betrokkenheid van dit verwerkte object'
+          type: string
+          nullable: true
+        verwerkingsActie:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/VerwerkingsActie-write'
+        verwerkteSoortGegevens:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerwerktSoortGegeven-write'
+    'VerwerktObject:jsonld-read':
+      type: object
+      description: 'Verwerkt object.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        objecttype:
+          description: 'Het type van dit verwerkte object'
+          type: string
+          nullable: true
+        soortObjectId:
+          description: 'Het soort id van dit verwerkte object'
+          type: string
+          nullable: true
+        objectId:
+          description: 'Het object id naast het lokale id'
+          type: string
+          nullable: true
+        betrokkenheid:
+          description: 'De betrokkenheid van dit verwerkte object'
+          type: string
+          nullable: true
+        verwerkteSoortGegevens:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerwerktSoortGegeven:jsonld-read'
+        dateCreated:
+          description: 'The moment this request was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this request last Modified'
+          type: string
+          format: date-time
+          nullable: true
+    'VerwerktObject:jsonld-write':
+      type: object
+      description: 'Verwerkt object.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        objecttype:
+          description: 'Het type van dit verwerkte object'
+          type: string
+          nullable: true
+        soortObjectId:
+          description: 'Het soort id van dit verwerkte object'
+          type: string
+          nullable: true
+        objectId:
+          description: 'Het object id naast het lokale id'
+          type: string
+          nullable: true
+        betrokkenheid:
+          description: 'De betrokkenheid van dit verwerkte object'
+          type: string
+          nullable: true
+        verwerkingsActie:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/VerwerkingsActie:jsonld-write'
+        verwerkteSoortGegevens:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerwerktSoortGegeven:jsonld-write'
+    VerwerktSoortGegeven-read:
+      type: object
+      description: 'Verwerkt soort gegeven.'
+      properties:
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        soortGegeven:
+          description: 'Het type van dit verwerkte object'
+          type: string
+        dateCreated:
+          description: 'The moment this request was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this request last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - soortGegeven
+    VerwerktSoortGegeven-write:
+      type: object
+      description: 'Verwerkt soort gegeven.'
+      required:
+        - soortGegeven
+      properties:
+        soortGegeven:
+          description: 'Het type van dit verwerkte object'
+          type: string
+        verwerktObject:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/VerwerktObject-write'
+    'VerwerktSoortGegeven:jsonld-read':
+      type: object
+      description: 'Verwerkt soort gegeven.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        soortGegeven:
+          description: 'Het type van dit verwerkte object'
+          type: string
+        dateCreated:
+          description: 'The moment this request was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this request last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - soortGegeven
+    'VerwerktSoortGegeven:jsonld-write':
+      type: object
+      description: 'Verwerkt soort gegeven.'
+      required:
+        - soortGegeven
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        soortGegeven:
+          description: 'Het type van dit verwerkte object'
+          type: string
+        verwerktObject:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/VerwerktObject:jsonld-write'
 definitions:
-  ChangeLog-read:
+  VerwerkingsActie-read:
     properties:
       id:
-        description: 'The UUID identifier of this object'
+        description: 'The UUID identifier of this resource'
         type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
-      note:
-        description: 'A note conserning this log lin'
+      actieNaam:
+        description: 'The name of this processing action.'
         type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
+        example: 'Zoeken personen'
+        maxLength: 255
+      handelingsNaam:
+        description: 'The name of this processing action.'
         type: string
-      objectId:
-        description: ''
+        example: Intake
+        maxLength: 255
+      verwerkingsnaam:
+        description: 'The name of this processing action.'
         type: string
-      objectClass:
-        description: ''
+        example: Huwelijk
+        maxLength: 255
+      verwerkingId:
+        description: 'The name of this processing action.'
         type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
+        example: 48086bf2-11b7-4603-9526-67d7c3bb6587
+        maxLength: 255
+      verwerkingsactiviteitId:
+        description: 'The name of this processing action.'
         type: string
-      session:
+        example: 5f0bef4c-f66f-4311-84a5-19e8bf359eaf
+        maxLength: 255
+      verwerkingsactiviteitUrl:
+        description: 'The name of this processing action.'
+        type: string
+        example: 'https://loggingapi.vng.cloud/api/v1/verwerkingsactiviteiten/5f0bef4c-f66f-4311-84a5-19e8bf359eaf'
+        maxLength: 2055
+        format: url
+      vertrouwelijkheid:
+        description: 'The name of this processing action.'
+        type: string
+        example: normaal
+        maxLength: 255
+      bewaartermijn:
+        description: 'The name of this processing action.'
+        type: string
+        example: P10Y
+        maxLength: 255
+      uitvoerder:
+        description: 'The name of this processing action.'
+        type: string
+        example: '00000001821002193000'
+        maxLength: 255
+      systeem:
+        description: 'The name of this processing action.'
+        type: string
+        example: 'FooBarApp v2.1'
+        maxLength: 255
+      gebruiker:
+        description: 'The name of this processing action.'
+        type: string
+        example: '123456789'
+        maxLength: 255
+      gegevensbron:
+        description: 'The name of this processing action.'
+        type: string
+        example: 'FooBar Database Publiekszaken'
+        maxLength: 255
+      soortAfnemerId:
+        description: 'The name of this processing action.'
+        type: string
+        example: OIN
+        maxLength: 255
+      afnemerId:
+        description: 'The name of this processing action.'
+        type: string
+        example: '00000001821002193000'
+        maxLength: 255
+      verwerkingsactiviteitIdAfnemer:
+        description: 'The name of this processing action.'
+        type: string
+        example: c5b9f4e7-8c79-41b9-91e2-6268419cb167
+        maxLength: 255
+      verwerkingsactiviteitUrlAfnemer:
+        description: 'The name of this processing action.'
+        type: string
+        example: 'https://www.amsterdam.nl/var/api/v1/verwerkingsactiviteiten/5f0bef4c-f66f-4311-84a5-19e8bf359eaf'
+        format: url
+        maxLength: 2055
+      verwerkingIdAfnemer:
+        description: 'The name of this processing action.'
+        type: string
+        example: 4b698de3-ffba-45e7-8697-a283ec863db2
+        maxLength: 2055
+      tijdstip:
+        description: 'The name of this processing action.'
+        type: \Datetime
+        example: '2024-04-05T14:35:42+01:00'
+      tijdstipRegistratie:
+        description: 'The name of this processing action.'
+        type: \Datetime
+        example: '2024-04-05T14:35:42+01:00'
+      dateCreated:
         description: 'The moment this request was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: \Datetime
+      verwerkteObjecten: []
+    required:
+      - vertrouwelijkheid
+      - tijdstip
+  VerwerkingsActie-write:
+    properties:
+      actieNaam:
+        description: 'The name of this processing action.'
         type: string
+        example: 'Zoeken personen'
+        maxLength: 255
+      handelingsNaam:
+        description: 'The name of this processing action.'
+        type: string
+        example: Intake
+        maxLength: 255
+      verwerkingsnaam:
+        description: 'The name of this processing action.'
+        type: string
+        example: Huwelijk
+        maxLength: 255
+      verwerkingId:
+        description: 'The name of this processing action.'
+        type: string
+        example: 48086bf2-11b7-4603-9526-67d7c3bb6587
+        maxLength: 255
+      verwerkingsactiviteitId:
+        description: 'The name of this processing action.'
+        type: string
+        example: 5f0bef4c-f66f-4311-84a5-19e8bf359eaf
+        maxLength: 255
+      verwerkingsactiviteitUrl:
+        description: 'The name of this processing action.'
+        type: string
+        example: 'https://loggingapi.vng.cloud/api/v1/verwerkingsactiviteiten/5f0bef4c-f66f-4311-84a5-19e8bf359eaf'
+        maxLength: 2055
+        format: url
+      vertrouwelijkheid:
+        description: 'The name of this processing action.'
+        type: string
+        example: normaal
+        maxLength: 255
+      bewaartermijn:
+        description: 'The name of this processing action.'
+        type: string
+        example: P10Y
+        maxLength: 255
+      uitvoerder:
+        description: 'The name of this processing action.'
+        type: string
+        example: '00000001821002193000'
+        maxLength: 255
+      systeem:
+        description: 'The name of this processing action.'
+        type: string
+        example: 'FooBarApp v2.1'
+        maxLength: 255
+      gebruiker:
+        description: 'The name of this processing action.'
+        type: string
+        example: '123456789'
+        maxLength: 255
+      gegevensbron:
+        description: 'The name of this processing action.'
+        type: string
+        example: 'FooBar Database Publiekszaken'
+        maxLength: 255
+      soortAfnemerId:
+        description: 'The name of this processing action.'
+        type: string
+        example: OIN
+        maxLength: 255
+      afnemerId:
+        description: 'The name of this processing action.'
+        type: string
+        example: '00000001821002193000'
+        maxLength: 255
+      verwerkingsactiviteitIdAfnemer:
+        description: 'The name of this processing action.'
+        type: string
+        example: c5b9f4e7-8c79-41b9-91e2-6268419cb167
+        maxLength: 255
+      verwerkingsactiviteitUrlAfnemer:
+        description: 'The name of this processing action.'
+        type: string
+        example: 'https://www.amsterdam.nl/var/api/v1/verwerkingsactiviteiten/5f0bef4c-f66f-4311-84a5-19e8bf359eaf'
+        format: url
+        maxLength: 2055
+      verwerkingIdAfnemer:
+        description: 'The name of this processing action.'
+        type: string
+        example: 4b698de3-ffba-45e7-8697-a283ec863db2
+        maxLength: 2055
+      tijdstip:
+        description: 'The name of this processing action.'
+        type: \Datetime
+        example: '2024-04-05T14:35:42+01:00'
+      verwerkteObjecten: []
+    required:
+      - vertrouwelijkheid
+      - tijdstip
+  VerwerktObject-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this resource'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      objecttype:
+        description: 'Het type van dit verwerkte object'
+        type: string
+        example: persoon
+        maxLength: 255
+      soortObjectId:
+        description: 'Het soort id van dit verwerkte object'
+        type: string
+        example: BSN
+        maxLength: 255
+      objectId:
+        description: 'Het object id naast het lokale id'
+        type: string
+        example: '1234567'
+        maxLength: 255
+      betrokkenheid:
+        description: 'De betrokkenheid van dit verwerkte object'
+        type: string
+        example: '1234567'
         maxLength: 255
       dateCreated:
         description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2021-06-23 14:04:23'
+        type: \Datetime
       dateModified:
         description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2021-06-23 14:04:23'
+        type: \Datetime
+      verwerkteSoortGegevens: []
     required: []
-  ChangeLog-write:
+  VerwerktObject-write:
     properties:
-      note:
-        description: 'A note conserning this log lin'
+      objecttype:
+        description: 'Het type van dit verwerkte object'
         type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
+        example: persoon
+        maxLength: 255
+      soortObjectId:
+        description: 'Het soort id van dit verwerkte object'
+        type: string
+        example: BSN
+        maxLength: 255
+      objectId:
+        description: 'Het object id naast het lokale id'
+        type: string
+        example: '1234567'
+        maxLength: 255
+      betrokkenheid:
+        description: 'De betrokkenheid van dit verwerkte object'
+        type: string
+        example: '1234567'
+        maxLength: 255
+      verwerkingsActie: []
+      verwerkteSoortGegevens: []
     required: []
+  VerwerktSoortGegeven-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this resource'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      soortGegeven:
+        description: 'Het type van dit verwerkte object'
+        type: string
+        example: persoon
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: \Datetime
+    required:
+      - soortGegeven
+  VerwerktSoortGegeven-write:
+    properties:
+      soortGegeven:
+        description: 'Het type van dit verwerkte object'
+        type: string
+        example: persoon
+        maxLength: 255
+      verwerktObject: []
+    required:
+      - soortGegeven
   AuditTrail-read:
     properties:
       id:
@@ -2491,12 +6022,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-06-23 14:04:23'
+        example: '2021-07-21 15:09:09'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-06-23 14:04:23'
+        example: '2021-07-21 15:09:09'
     required: []
   AuditTrail-write:
     properties:
@@ -2506,15 +6037,83 @@ definitions:
         example: 'This log line looks suspicius'
         maxLength: 2555
     required: []
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2021-07-21 15:09:09'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2021-07-21 15:09:09'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+    required: []
 tags:
   -
-    name: ChangeLog
+    name: VerwerkingsActie
+    description: |+
+      Verwerkings actie.
+
+  -
+    name: VerwerktObject
+    description: |+
+      Verwerkt object.
+
+  -
+    name: VerwerktSoortGegeven
+    description: |+
+      Verwerkt soort gegeven.
+
+  -
+    name: AuditTrail
     description: |-
       An resource representing a log line.
 
       This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
-    name: AuditTrail
+    name: ChangeLog
     description: |-
       An resource representing a log line.
 
@@ -2525,20 +6124,20 @@ securityDefinitions:
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the AuditTrail resource'
-      write: 'write right to the AuditTrail resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the AuditTrail resource'
-      write: 'write right to the AuditTrail resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
 host: irc.zaakonline.nl
 servers:
   -
     name: conduction.nl
-    url: proto-component-commonground.dev.conduction.nl
+    url: loggingcomponent.dev.conduction.nl
 externalDocs:
   -
     description: 'OAS Documentatie'

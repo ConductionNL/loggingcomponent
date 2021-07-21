@@ -72,7 +72,6 @@ class VerwerktObject
      *
      * @example persoon
      *
-     * @Gedmo\Versioned
      * @Assert\Length(
      *     max = 255
      * )
@@ -86,7 +85,6 @@ class VerwerktObject
      *
      * @example BSN
      *
-     * @Gedmo\Versioned
      * @Assert\Length(
      *     max = 255
      * )
@@ -100,7 +98,6 @@ class VerwerktObject
      *
      * @example 1234567
      *
-     * @Gedmo\Versioned
      * @Assert\Length(
      *     max = 255
      * )
@@ -114,7 +111,6 @@ class VerwerktObject
      *
      * @example 1234567
      *
-     * @Gedmo\Versioned
      * @Assert\Length(
      *     max = 255
      * )
@@ -124,18 +120,15 @@ class VerwerktObject
     private $betrokkenheid;
 
     /**
-     * @var VerwerkingsActie Verwerkings actie van dit verwerkt object
-     *
      * @Groups({"write"})
-     * @ORM\ManyToOne(targetEntity="App\Entity\VerwerkingsActie", inversedBy="verwerkteObjecten", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=VerwerkingsActie::class, inversedBy="verwerkteObjecten")
      * @MaxDepth(1)
      */
     private $verwerkingsActie;
+
     /**
-     * @var ArrayCollection Verwerkte soort gegevens verwerkt object
-     *
-     * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity="App\Entity\VerwerktSoortGegeven", mappedBy="verwerktObject", cascade={"persist"})
+     * @Groups({"read","write"})
+     * @ORM\OneToMany(targetEntity=VerwerktSoortGegeven::class, mappedBy="verwerktObject")
      * @MaxDepth(1)
      */
     private $verwerkteSoortGegevens;
@@ -223,49 +216,6 @@ class VerwerktObject
         return $this;
     }
 
-    public function getVerwerkingsActie(): ?VerwerkingsActie
-    {
-        return $this->verwerkingsActie;
-    }
-
-    public function setVerwerkingsActie(?VerwerkingsActie $verwerkingsActie): self
-    {
-        $this->verwerkingsActie = $verwerkingsActie;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|VerwerktSoortGegeven[]
-     */
-    public function getVerwerkteSoortGegevens(): Collection
-    {
-        return $this->verwerkteSoortGegevens;
-    }
-
-    public function addVerwerktSoortGegeven(VerwerktSoortGegeven $verwerktSoortGegeven): self
-    {
-        if (!$this->verwerkteSoortGegevens->contains($verwerktSoortGegeven)) {
-            $this->verwerkteSoortGegevens[] = $verwerktSoortGegeven;
-            $verwerktSoortGegeven->setVerwerktObject($this);
-        }
-
-        return $this;
-    }
-
-    public function removeVerwerktSoortGegeven(VerwerktSoortGegeven $verwerktSoortGegeven): self
-    {
-        if ($this->verwerkteSoortGegevens->contains($verwerktSoortGegeven)) {
-            $this->verwerkteSoortGegevens->removeElement($verwerktSoortGegeven);
-            // set the owning side to null (unless already changed)
-            if ($verwerktSoortGegeven->getVerwerktObject() === $this) {
-                $verwerktSoortGegeven->setVerwerktObject(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getDateCreated(): ?\DateTimeInterface
     {
         return $this->dateCreated;
@@ -286,6 +236,48 @@ class VerwerktObject
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
         $this->dateModified = $dateModified;
+
+        return $this;
+    }
+
+    public function getVerwerkingsActie(): ?VerwerkingsActie
+    {
+        return $this->verwerkingsActie;
+    }
+
+    public function setVerwerkingsActie(?VerwerkingsActie $verwerkingsActie): self
+    {
+        $this->verwerkingsActie = $verwerkingsActie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|VerwerktSoortGegeven[]
+     */
+    public function getVerwerkteSoortGegevens(): Collection
+    {
+        return $this->verwerkteSoortGegevens;
+    }
+
+    public function addVerwerkteSoortGegeven(VerwerktSoortGegeven $verwerkteSoortGegeven): self
+    {
+        if (!$this->verwerkteSoortGegevens->contains($verwerkteSoortGegeven)) {
+            $this->verwerkteSoortGegevens[] = $verwerkteSoortGegeven;
+            $verwerkteSoortGegeven->setVerwerktObject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVerwerkteSoortGegeven(VerwerktSoortGegeven $verwerkteSoortGegeven): self
+    {
+        if ($this->verwerkteSoortGegevens->removeElement($verwerkteSoortGegeven)) {
+            // set the owning side to null (unless already changed)
+            if ($verwerkteSoortGegeven->getVerwerktObject() === $this) {
+                $verwerkteSoortGegeven->setVerwerktObject(null);
+            }
+        }
 
         return $this;
     }

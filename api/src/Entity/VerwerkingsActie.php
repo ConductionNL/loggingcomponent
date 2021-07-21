@@ -72,7 +72,6 @@ class VerwerkingsActie
      *
      * @example Zoeken personen
      *
-     * @Gedmo\Versioned
      * @Assert\Length(
      *     max = 255
      * )
@@ -86,7 +85,6 @@ class VerwerkingsActie
      *
      * @example Intake
      *
-     * @Gedmo\Versioned
      * @Assert\Length(
      *     max = 255
      * )
@@ -100,7 +98,6 @@ class VerwerkingsActie
      *
      * @example Huwelijk
      *
-     * @Gedmo\Versioned
      * @Assert\Length(
      *     max = 255
      * )
@@ -114,7 +111,6 @@ class VerwerkingsActie
      *
      * @example 48086bf2-11b7-4603-9526-67d7c3bb6587
      *
-     * @Gedmo\Versioned
      * @Assert\Length(
      *     max = 255
      * )
@@ -128,7 +124,6 @@ class VerwerkingsActie
      *
      * @example 5f0bef4c-f66f-4311-84a5-19e8bf359eaf
      *
-     * @Gedmo\Versioned
      * @Assert\Length(
      *     max = 255
      * )
@@ -142,7 +137,6 @@ class VerwerkingsActie
      *
      * @example https://loggingapi.vng.cloud/api/v1/verwerkingsactiviteiten/5f0bef4c-f66f-4311-84a5-19e8bf359eaf
      *
-     * @Gedmo\Versioned
      * @Assert\Length(
      *     max = 2055
      * )
@@ -157,7 +151,6 @@ class VerwerkingsActie
      *
      * @example normaal
      *
-     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *     max = 255
@@ -172,7 +165,6 @@ class VerwerkingsActie
      *
      * @example P10Y
      *
-     * @Gedmo\Versioned
      * @Assert\Length(
      *     max = 255
      * )
@@ -186,7 +178,6 @@ class VerwerkingsActie
      *
      * @example 00000001821002193000
      *
-     * @Gedmo\Versioned
      * @Assert\Length(
      *     max = 255
      * )
@@ -200,7 +191,6 @@ class VerwerkingsActie
      *
      * @example FooBarApp v2.1
      *
-     * @Gedmo\Versioned
      * @Assert\Length(
      *     max = 255
      * )
@@ -214,7 +204,6 @@ class VerwerkingsActie
      *
      * @example 123456789
      *
-     * @Gedmo\Versioned
      * @Assert\Length(
      *     max = 255
      * )
@@ -228,7 +217,6 @@ class VerwerkingsActie
      *
      * @example FooBar Database Publiekszaken
      *
-     * @Gedmo\Versioned
      * @Assert\Length(
      *     max = 255
      * )
@@ -242,7 +230,6 @@ class VerwerkingsActie
      *
      * @example OIN
      *
-     * @Gedmo\Versioned
      * @Assert\Length(
      *     max = 255
      * )
@@ -256,7 +243,6 @@ class VerwerkingsActie
      *
      * @example 00000001821002193000
      *
-     * @Gedmo\Versioned
      * @Assert\Length(
      *     max = 255
      * )
@@ -270,7 +256,6 @@ class VerwerkingsActie
      *
      * @example c5b9f4e7-8c79-41b9-91e2-6268419cb167
      *
-     * @Gedmo\Versioned
      * @Assert\Length(
      *     max = 255
      * )
@@ -284,7 +269,6 @@ class VerwerkingsActie
      *
      * @example https://www.amsterdam.nl/var/api/v1/verwerkingsactiviteiten/5f0bef4c-f66f-4311-84a5-19e8bf359eaf
      *
-     * @Gedmo\Versioned
      * @Assert\Url()
      * @Assert\Length(
      *     max = 2055
@@ -299,8 +283,6 @@ class VerwerkingsActie
      *
      * @example 4b698de3-ffba-45e7-8697-a283ec863db2
      *
-     * @Gedmo\Versioned
-     * @Assert\Url()
      * @Assert\Length(
      *     max = 2055
      * )
@@ -310,11 +292,17 @@ class VerwerkingsActie
     private $verwerkingIdAfnemer;
 
     /**
+     * @Groups({"read","write"})
+     * @ORM\OneToMany(targetEntity=VerwerktObject::class, mappedBy="verwerkingsActie")
+     * @MaxDepth(1)
+     */
+    private $verwerkteObjecten;
+
+    /**
      * @var Datetime The name of this processing action.
      *
      * @example 2024-04-05T14:35:42+01:00
      *
-     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Groups({"read","write"})
      * @ORM\Column(type="datetime")
@@ -326,22 +314,11 @@ class VerwerkingsActie
      *
      * @example 2024-04-05T14:35:42+01:00
      *
-     * @Gedmo\Versioned
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     private $tijdstipRegistratie;
-
-    /**
-     * @var ArrayCollection Verwerkte objecten van deze verwerkings actie
-     *
-     * @Gedmo\Versioned
-     * @Groups({"read", "write"})
-     * @ORM\OneToMany(targetEntity="App\Entity\VerwerktObject", mappedBy="verwerkingsActie", cascade={"persist"})
-     * @MaxDepth(1)
-     */
-    private $verwerkteObjecten;
 
     /**
      * @var Datetime The moment this request was created
@@ -606,37 +583,6 @@ class VerwerkingsActie
         return $this;
     }
 
-    /**
-     * @return Collection|VerwerktObject[]
-     */
-    public function getVerwerktObjects(): Collection
-    {
-        return $this->verwerkteObjecten;
-    }
-
-    public function addVerwerktObject(VerwerktObject $verwerktObject): self
-    {
-        if (!$this->verwerkteObjecten->contains($verwerktObject)) {
-            $this->verwerkteObjecten[] = $verwerktObject;
-            $verwerktObject->setVerwerkingsActie($this);
-        }
-
-        return $this;
-    }
-
-    public function removeVerwerktObject(VerwerktObject $verwerktObject): self
-    {
-        if ($this->verwerkteObjecten->contains($verwerktObject)) {
-            $this->verwerkteObjecten->removeElement($verwerktObject);
-            // set the owning side to null (unless already changed)
-            if ($verwerktObject->getVerwerkingsActie() === $this) {
-                $verwerktObject->setVerwerkingsActie(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getDateCreated(): ?\DateTimeInterface
     {
         return $this->dateCreated;
@@ -657,6 +603,36 @@ class VerwerkingsActie
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
         $this->dateModified = $dateModified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|VerwerktObject[]
+     */
+    public function getVerwerkteObjecten(): Collection
+    {
+        return $this->verwerkteObjecten;
+    }
+
+    public function addVerwerkteObjecten(VerwerktObject $verwerkteObjecten): self
+    {
+        if (!$this->verwerkteObjecten->contains($verwerkteObjecten)) {
+            $this->verwerkteObjecten[] = $verwerkteObjecten;
+            $verwerkteObjecten->setVerwerkingsActie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVerwerkteObjecten(VerwerktObject $verwerkteObjecten): self
+    {
+        if ($this->verwerkteObjecten->removeElement($verwerkteObjecten)) {
+            // set the owning side to null (unless already changed)
+            if ($verwerkteObjecten->getVerwerkingsActie() === $this) {
+                $verwerkteObjecten->setVerwerkingsActie(null);
+            }
+        }
 
         return $this;
     }
