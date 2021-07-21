@@ -1,8 +1,8 @@
 publiccodeYmlVersion: "0.2"
 
-name: proto-component-commonground
+name: loggingcomponent
 applicationSuite: commonground
-url: "https://github.com/ConductionNL/Proto-component-commonground"
+url: "https://github.com/ConductionNL/loggingcomponent"
 landingURL: "pc.zaakonline.nl"
 isBasedOn: "https://github.com/ConductionNL/Proto-component-commonground.git"
 softwareVersion: "V1.0"
