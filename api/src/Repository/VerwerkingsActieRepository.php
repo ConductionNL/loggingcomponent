@@ -2,17 +2,17 @@
 
 namespace App\Repository;
 
-use App\Entity\ProcessingAction;
+use App\Entity\VerwerkingsActie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method ProcessingAction|null find($id, $lockMode = null, $lockVersion = null)
- * @method ProcessingAction|null findOneBy(array $criteria, array $orderBy = null)
- * @method ProcessingAction[]    findAll()
- * @method ProcessingAction[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method VerwerkingsActie|null find($id, $lockMode = null, $lockVersion = null)
+ * @method VerwerkingsActie|null findOneBy(array $criteria, array $orderBy = null)
+ * @method VerwerkingsActie[]    findAll()
+ * @method VerwerkingsActie[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ProcessingActionRepository extends ServiceEntityRepository
+class VerwerkingsActieRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

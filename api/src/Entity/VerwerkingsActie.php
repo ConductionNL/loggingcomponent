@@ -19,7 +19,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * An processing action.
+ * Verwerkings actie.
  *
  * @ApiResource(
  *     attributes={"pagination_items_per_page"=30},
@@ -30,7 +30,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "put",
  *          "delete",
  *          "get_change_logs"={
- *              "path"="/processing_actions/{id}/change_log",
+ *              "path"="/verwerkings_acties/{id}/change_log",
  *              "method"="get",
  *              "swagger_context" = {
  *                  "summary"="Changelogs",
@@ -38,7 +38,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *              }
  *          },
  *          "get_audit_trail"={
- *              "path"="/processing_actions/{id}/audit_trail",
+ *              "path"="/verwerkings_acties/{id}/audit_trail",
  *              "method"="get",
  *              "swagger_context" = {
  *                  "summary"="Audittrail",
@@ -47,11 +47,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          }
  *     }
  * )
- * @ORM\Entity(repositoryClass="App\Repository\ProcessingActionRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\VerwerkingsActieRepository")
  * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
  *
  */
-class ProcessingAction
+class VerwerkingsActie
 {
     /**
      * @var UuidInterface The UUID identifier of this resource
@@ -322,13 +322,24 @@ class ProcessingAction
     private $tijdstip;
 
     /**
-     * @var array The name of this processing action.
+     * @var Datetime The name of this processing action.
      *
-     * @example [ {"objecttype": "persoon","soortObjectId": "BSN","objectId": "1234567","betrokkenheid": "Getuige","verwerkteSoortenGegevens": []}]
+     * @example 2024-04-05T14:35:42+01:00
      *
      * @Gedmo\Versioned
-     * @Groups({"read","write"})
-     * @ORM\Column(type="json", nullable=true)
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    private $tijdstipRegistratie;
+
+    /**
+     * @var ArrayCollection Verwerkte objecten van deze verwerkings actie
+     *
+     * @Gedmo\Versioned
+     * @Groups({"read", "write"})
+     * @ORM\OneToMany(targetEntity="App\Entity\VerwerktObject", mappedBy="verwerkingsActie", cascade={"persist"})
+     * @MaxDepth(1)
      */
     private $verwerkteObjecten;
 
@@ -349,6 +360,11 @@ class ProcessingAction
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateModified;
+
+    public function __construct()
+    {
+        $this->verwerkteObjecten = new ArrayCollection();
+    }
 
     public function getId(): ?Uuid
     {
@@ -566,7 +582,7 @@ class ProcessingAction
         return $this;
     }
 
-    public function getTijdstp(): ?\DateTimeInterface
+    public function getTijdstip(): ?\DateTimeInterface
     {
         return $this->tijdstip;
     }
@@ -578,14 +594,45 @@ class ProcessingAction
         return $this;
     }
 
-    public function getVerwerkteObjecten(): ?array
+    public function getTijdstipRegistratie(): ?\DateTimeInterface
+    {
+        return $this->tijdstipRegistratie;
+    }
+
+    public function setTijdstipRegistratie(\DateTimeInterface $tijdstipRegistratie): self
+    {
+        $this->tijdstipRegistratie = $tijdstipRegistratie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|VerwerktObject[]
+     */
+    public function getVerwerktObjects(): Collection
     {
         return $this->verwerkteObjecten;
     }
 
-    public function setVerwerkteObjecten(array $verwerkteObjecten): self
+    public function addVerwerktObject(VerwerktObject $verwerktObject): self
     {
-        $this->verwerkteObjecten = $verwerkteObjecten;
+        if (!$this->verwerkteObjecten->contains($verwerktObject)) {
+            $this->verwerkteObjecten[] = $verwerktObject;
+            $verwerktObject->setVerwerkingsActie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVerwerktObject(VerwerktObject $verwerktObject): self
+    {
+        if ($this->verwerkteObjecten->contains($verwerktObject)) {
+            $this->verwerkteObjecten->removeElement($verwerktObject);
+            // set the owning side to null (unless already changed)
+            if ($verwerktObject->getVerwerkingsActie() === $this) {
+                $verwerktObject->setVerwerkingsActie(null);
+            }
+        }
 
         return $this;
     }
