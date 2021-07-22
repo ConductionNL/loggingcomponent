@@ -2028,6 +2028,28 @@ paths:
                   $ref: '#/components/schemas/VerwerkingsActie-read'
       parameters:
         -
+          name: verwerkteObjecten.soortObjectId
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: verwerkteObjecten.objectId
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'verwerkteObjecten.objectId[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
           name: page
           in: query
           required: false
@@ -6022,12 +6044,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-07-21 15:09:09'
+        example: '2021-07-22 07:28:37'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-07-21 15:09:09'
+        example: '2021-07-22 07:28:37'
     required: []
   AuditTrail-write:
     properties:
@@ -6075,12 +6097,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-07-21 15:09:09'
+        example: '2021-07-22 07:28:37'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-07-21 15:09:09'
+        example: '2021-07-22 07:28:37'
     required: []
   ChangeLog-write:
     properties:

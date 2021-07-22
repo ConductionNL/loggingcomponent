@@ -49,7 +49,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  * @ORM\Entity(repositoryClass="App\Repository\VerwerkingsActieRepository")
  * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
- *
+ * @ApiFilter(SearchFilter::class, properties={
+ *     "verwerkteObjecten.soortObjectId": "iexact",
+ *     "verwerkteObjecten.objectId": "exact"
+ * })
  */
 class VerwerkingsActie
 {
