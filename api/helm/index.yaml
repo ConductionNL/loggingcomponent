@@ -5,7 +5,7 @@ entries:
       artifacthub.io/containsSecurityUpdates: "true"
     apiVersion: v2
     appVersion: V1.0
-    created: "2021-07-21T15:07:30.3603265Z"
+    created: "2021-07-22T07:25:53.751009Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -42,7 +42,7 @@ entries:
       artifacthub.io/containsSecurityUpdates: "true"
     apiVersion: v2
     appVersion: V1.0
-    created: "2021-07-21T15:07:30.3881658Z"
+    created: "2021-07-22T07:25:53.7832695Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -54,7 +54,7 @@ entries:
       version: 12.7.7
     description: Het Proto Component vormt zowel de gemeenschappelijke basis onder
       alle componenten, als een “template” voor het maken van nieuwe componenten.
-    digest: 531c0578c48d72e66ee7cbb074750c12efd34a7d993e90a05f7a53ac1e2c597c
+    digest: aadaf4a716506f48e42749235f9e3713d249ed1a1e41576d41f47d4b3cfd2be3
     home: https://www.conduction.nl
     icon: https://conductionnl.github.io/images/conduction_avatar_blue_on_transparant.svg
     keywords:
@@ -79,7 +79,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 11.10.0
-    created: "2021-07-21T15:07:30.4044952Z"
+    created: "2021-07-22T07:25:53.8015321Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -113,7 +113,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 6.0.11
-    created: "2021-07-21T15:07:30.4210903Z"
+    created: "2021-07-22T07:25:53.8231933Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -142,4 +142,4 @@ entries:
     urls:
     - charts/redis-12.7.7.tgz
     version: 12.7.7
-generated: "2021-07-21T15:07:30.3273539Z"
+generated: "2021-07-22T07:25:53.7141707Z"

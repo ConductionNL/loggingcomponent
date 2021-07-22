@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1626880167">
-  <project timestamp="1626880167">
+<coverage generated="1626938934">
+  <project timestamp="1626938934">
     <file name="/srv/api/src/Controller/UserController.php">
       <class name="App\Controller\UserController" namespace="global">
         <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="4" coveredelements="0"/>
@@ -29,132 +29,132 @@
       <class name="App\Entity\VerwerkingsActie" namespace="global">
         <metrics complexity="51" methods="48" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="77" coveredstatements="0" elements="125" coveredelements="0"/>
       </class>
-      <line num="341" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="343" type="stmt" count="0"/>
-      <line num="344" type="stmt" count="0"/>
-      <line num="346" type="method" name="getId" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="348" type="stmt" count="0"/>
-      <line num="351" type="method" name="setId" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="353" type="stmt" count="0"/>
-      <line num="355" type="stmt" count="0"/>
-      <line num="358" type="method" name="getActieNaam" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="360" type="stmt" count="0"/>
-      <line num="363" type="method" name="setActieNaam" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="365" type="stmt" count="0"/>
-      <line num="367" type="stmt" count="0"/>
-      <line num="370" type="method" name="getHandelingsNaam" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="372" type="stmt" count="0"/>
-      <line num="375" type="method" name="setHandelingsNaam" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="377" type="stmt" count="0"/>
-      <line num="379" type="stmt" count="0"/>
-      <line num="382" type="method" name="getVerwerkingsNaam" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="384" type="stmt" count="0"/>
-      <line num="387" type="method" name="setVerwerkingsNaam" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="389" type="stmt" count="0"/>
-      <line num="391" type="stmt" count="0"/>
-      <line num="394" type="method" name="getVerwerkingId" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="396" type="stmt" count="0"/>
-      <line num="399" type="method" name="setVerwerkingId" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="401" type="stmt" count="0"/>
-      <line num="403" type="stmt" count="0"/>
-      <line num="406" type="method" name="getVerwerkingsactiviteitId" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="408" type="stmt" count="0"/>
-      <line num="411" type="method" name="setVerwerkingsactiviteitId" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="413" type="stmt" count="0"/>
-      <line num="415" type="stmt" count="0"/>
-      <line num="418" type="method" name="getVerwerkingsactiviteitUrl" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="420" type="stmt" count="0"/>
-      <line num="423" type="method" name="setVerwerkingsactiviteitUrl" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="425" type="stmt" count="0"/>
-      <line num="427" type="stmt" count="0"/>
-      <line num="430" type="method" name="getVertrouwelijkheid" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="432" type="stmt" count="0"/>
-      <line num="435" type="method" name="setVertrouwelijkheid" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="437" type="stmt" count="0"/>
-      <line num="439" type="stmt" count="0"/>
-      <line num="442" type="method" name="getBewaartermijn" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="444" type="stmt" count="0"/>
-      <line num="447" type="method" name="setBewaartermijn" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="449" type="stmt" count="0"/>
-      <line num="451" type="stmt" count="0"/>
-      <line num="454" type="method" name="getUitvoerder" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="456" type="stmt" count="0"/>
-      <line num="459" type="method" name="setUitvoerder" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="461" type="stmt" count="0"/>
-      <line num="463" type="stmt" count="0"/>
-      <line num="466" type="method" name="getSysteem" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="468" type="stmt" count="0"/>
-      <line num="471" type="method" name="setSysteem" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="473" type="stmt" count="0"/>
-      <line num="475" type="stmt" count="0"/>
-      <line num="478" type="method" name="getGebruiker" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="480" type="stmt" count="0"/>
-      <line num="483" type="method" name="setGebruiker" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="485" type="stmt" count="0"/>
-      <line num="487" type="stmt" count="0"/>
-      <line num="490" type="method" name="getGegevensbron" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="492" type="stmt" count="0"/>
-      <line num="495" type="method" name="setGegevensbron" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="497" type="stmt" count="0"/>
-      <line num="499" type="stmt" count="0"/>
-      <line num="502" type="method" name="getSoortAfnemerId" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="504" type="stmt" count="0"/>
-      <line num="507" type="method" name="setSoortAfnemerId" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="509" type="stmt" count="0"/>
-      <line num="511" type="stmt" count="0"/>
-      <line num="514" type="method" name="getAfnemerId" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="516" type="stmt" count="0"/>
-      <line num="519" type="method" name="setAfnemerId" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="521" type="stmt" count="0"/>
-      <line num="523" type="stmt" count="0"/>
-      <line num="526" type="method" name="getVerwerkingsactiviteitIdAfnemer" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="528" type="stmt" count="0"/>
-      <line num="531" type="method" name="setVerwerkingsactiviteitIdAfnemer" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="533" type="stmt" count="0"/>
-      <line num="535" type="stmt" count="0"/>
-      <line num="538" type="method" name="getVerwerkingsactiviteitUrlAfnemer" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="540" type="stmt" count="0"/>
-      <line num="543" type="method" name="setVerwerkingsactiviteitUrlAfnemer" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="545" type="stmt" count="0"/>
-      <line num="547" type="stmt" count="0"/>
-      <line num="550" type="method" name="getVerwerkingIdAfnemer" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="552" type="stmt" count="0"/>
-      <line num="555" type="method" name="setVerwerkingIdAfnemer" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="557" type="stmt" count="0"/>
-      <line num="559" type="stmt" count="0"/>
-      <line num="562" type="method" name="getTijdstip" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="564" type="stmt" count="0"/>
-      <line num="567" type="method" name="setTijdstip" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="569" type="stmt" count="0"/>
-      <line num="571" type="stmt" count="0"/>
-      <line num="574" type="method" name="getTijdstipRegistratie" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="576" type="stmt" count="0"/>
-      <line num="579" type="method" name="setTijdstipRegistratie" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="581" type="stmt" count="0"/>
-      <line num="583" type="stmt" count="0"/>
-      <line num="586" type="method" name="getDateCreated" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="588" type="stmt" count="0"/>
-      <line num="591" type="method" name="setDateCreated" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="593" type="stmt" count="0"/>
-      <line num="595" type="stmt" count="0"/>
-      <line num="598" type="method" name="getDateModified" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="600" type="stmt" count="0"/>
-      <line num="603" type="method" name="setDateModified" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="605" type="stmt" count="0"/>
-      <line num="607" type="stmt" count="0"/>
-      <line num="613" type="method" name="getVerwerkteObjecten" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="615" type="stmt" count="0"/>
-      <line num="618" type="method" name="addVerwerkteObjecten" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="620" type="stmt" count="0"/>
-      <line num="621" type="stmt" count="0"/>
-      <line num="622" type="stmt" count="0"/>
+      <line num="344" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="346" type="stmt" count="0"/>
+      <line num="347" type="stmt" count="0"/>
+      <line num="349" type="method" name="getId" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="351" type="stmt" count="0"/>
+      <line num="354" type="method" name="setId" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="356" type="stmt" count="0"/>
+      <line num="358" type="stmt" count="0"/>
+      <line num="361" type="method" name="getActieNaam" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="363" type="stmt" count="0"/>
+      <line num="366" type="method" name="setActieNaam" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="368" type="stmt" count="0"/>
+      <line num="370" type="stmt" count="0"/>
+      <line num="373" type="method" name="getHandelingsNaam" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="375" type="stmt" count="0"/>
+      <line num="378" type="method" name="setHandelingsNaam" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="380" type="stmt" count="0"/>
+      <line num="382" type="stmt" count="0"/>
+      <line num="385" type="method" name="getVerwerkingsNaam" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="387" type="stmt" count="0"/>
+      <line num="390" type="method" name="setVerwerkingsNaam" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="392" type="stmt" count="0"/>
+      <line num="394" type="stmt" count="0"/>
+      <line num="397" type="method" name="getVerwerkingId" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="399" type="stmt" count="0"/>
+      <line num="402" type="method" name="setVerwerkingId" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="404" type="stmt" count="0"/>
+      <line num="406" type="stmt" count="0"/>
+      <line num="409" type="method" name="getVerwerkingsactiviteitId" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="411" type="stmt" count="0"/>
+      <line num="414" type="method" name="setVerwerkingsactiviteitId" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="416" type="stmt" count="0"/>
+      <line num="418" type="stmt" count="0"/>
+      <line num="421" type="method" name="getVerwerkingsactiviteitUrl" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="423" type="stmt" count="0"/>
+      <line num="426" type="method" name="setVerwerkingsactiviteitUrl" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="428" type="stmt" count="0"/>
+      <line num="430" type="stmt" count="0"/>
+      <line num="433" type="method" name="getVertrouwelijkheid" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="435" type="stmt" count="0"/>
+      <line num="438" type="method" name="setVertrouwelijkheid" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="440" type="stmt" count="0"/>
+      <line num="442" type="stmt" count="0"/>
+      <line num="445" type="method" name="getBewaartermijn" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="447" type="stmt" count="0"/>
+      <line num="450" type="method" name="setBewaartermijn" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="452" type="stmt" count="0"/>
+      <line num="454" type="stmt" count="0"/>
+      <line num="457" type="method" name="getUitvoerder" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="459" type="stmt" count="0"/>
+      <line num="462" type="method" name="setUitvoerder" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="464" type="stmt" count="0"/>
+      <line num="466" type="stmt" count="0"/>
+      <line num="469" type="method" name="getSysteem" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="471" type="stmt" count="0"/>
+      <line num="474" type="method" name="setSysteem" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="476" type="stmt" count="0"/>
+      <line num="478" type="stmt" count="0"/>
+      <line num="481" type="method" name="getGebruiker" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="483" type="stmt" count="0"/>
+      <line num="486" type="method" name="setGebruiker" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="488" type="stmt" count="0"/>
+      <line num="490" type="stmt" count="0"/>
+      <line num="493" type="method" name="getGegevensbron" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="495" type="stmt" count="0"/>
+      <line num="498" type="method" name="setGegevensbron" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="500" type="stmt" count="0"/>
+      <line num="502" type="stmt" count="0"/>
+      <line num="505" type="method" name="getSoortAfnemerId" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="507" type="stmt" count="0"/>
+      <line num="510" type="method" name="setSoortAfnemerId" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="512" type="stmt" count="0"/>
+      <line num="514" type="stmt" count="0"/>
+      <line num="517" type="method" name="getAfnemerId" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="519" type="stmt" count="0"/>
+      <line num="522" type="method" name="setAfnemerId" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="524" type="stmt" count="0"/>
+      <line num="526" type="stmt" count="0"/>
+      <line num="529" type="method" name="getVerwerkingsactiviteitIdAfnemer" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="531" type="stmt" count="0"/>
+      <line num="534" type="method" name="setVerwerkingsactiviteitIdAfnemer" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="536" type="stmt" count="0"/>
+      <line num="538" type="stmt" count="0"/>
+      <line num="541" type="method" name="getVerwerkingsactiviteitUrlAfnemer" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="543" type="stmt" count="0"/>
+      <line num="546" type="method" name="setVerwerkingsactiviteitUrlAfnemer" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="548" type="stmt" count="0"/>
+      <line num="550" type="stmt" count="0"/>
+      <line num="553" type="method" name="getVerwerkingIdAfnemer" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="555" type="stmt" count="0"/>
+      <line num="558" type="method" name="setVerwerkingIdAfnemer" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="560" type="stmt" count="0"/>
+      <line num="562" type="stmt" count="0"/>
+      <line num="565" type="method" name="getTijdstip" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="567" type="stmt" count="0"/>
+      <line num="570" type="method" name="setTijdstip" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="572" type="stmt" count="0"/>
+      <line num="574" type="stmt" count="0"/>
+      <line num="577" type="method" name="getTijdstipRegistratie" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="579" type="stmt" count="0"/>
+      <line num="582" type="method" name="setTijdstipRegistratie" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="584" type="stmt" count="0"/>
+      <line num="586" type="stmt" count="0"/>
+      <line num="589" type="method" name="getDateCreated" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="591" type="stmt" count="0"/>
+      <line num="594" type="method" name="setDateCreated" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="596" type="stmt" count="0"/>
+      <line num="598" type="stmt" count="0"/>
+      <line num="601" type="method" name="getDateModified" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="603" type="stmt" count="0"/>
+      <line num="606" type="method" name="setDateModified" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="608" type="stmt" count="0"/>
+      <line num="610" type="stmt" count="0"/>
+      <line num="616" type="method" name="getVerwerkteObjecten" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="618" type="stmt" count="0"/>
+      <line num="621" type="method" name="addVerwerkteObjecten" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="623" type="stmt" count="0"/>
+      <line num="624" type="stmt" count="0"/>
       <line num="625" type="stmt" count="0"/>
-      <line num="628" type="method" name="removeVerwerkteObjecten" visibility="public" complexity="3" crap="12" count="0"/>
-      <line num="630" type="stmt" count="0"/>
-      <line num="632" type="stmt" count="0"/>
+      <line num="628" type="stmt" count="0"/>
+      <line num="631" type="method" name="removeVerwerkteObjecten" visibility="public" complexity="3" crap="12" count="0"/>
       <line num="633" type="stmt" count="0"/>
-      <line num="637" type="stmt" count="0"/>
-      <metrics loc="639" ncloc="363" classes="1" methods="48" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="77" coveredstatements="0" elements="125" coveredelements="0"/>
+      <line num="635" type="stmt" count="0"/>
+      <line num="636" type="stmt" count="0"/>
+      <line num="640" type="stmt" count="0"/>
+      <metrics loc="642" ncloc="363" classes="1" methods="48" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="77" coveredstatements="0" elements="125" coveredelements="0"/>
     </file>
     <file name="/srv/api/src/Entity/VerwerktObject.php">
       <class name="App\Entity\VerwerktObject" namespace="global">
@@ -323,6 +323,6 @@
       <line num="20" type="stmt" count="0"/>
       <metrics loc="50" ncloc="17" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="3" coveredelements="0"/>
     </file>
-    <metrics files="10" loc="1401" ncloc="816" classes="10" methods="92" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="171" coveredstatements="0" elements="263" coveredelements="0"/>
+    <metrics files="10" loc="1404" ncloc="816" classes="10" methods="92" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="171" coveredstatements="0" elements="263" coveredelements="0"/>
   </project>
 </coverage>
